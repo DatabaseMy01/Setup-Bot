@@ -11,14 +11,17 @@ sudo apt install -y build-essential wget curl git unzip zip neofetch make g++ im
 
 # Install NVM (Node Version Manager)
 echo "📦 Menginstal NVM..."
-wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+if [ ! -d "$NVM_DIR" ]; then
+  wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+fi
 
 # Load NVM ke shell
 export NVM_DIR="$HOME/.nvm"
 source "$NVM_DIR/nvm.sh"
 
-# Instal Node.js versi 22 (LTS dan kompatibel dengan canvas)
-NODE_VERSION="22"
+# Instal Node.js versi 24
+NODE_VERSION="24"
 echo "⬇️ Menginstal Node.js versi $NODE_VERSION..."
 nvm install $NODE_VERSION
 nvm use $NODE_VERSION
@@ -28,8 +31,8 @@ nvm alias default $NODE_VERSION
 echo "📦 Menginstal module global: pm2, node-gyp..."
 npm install -g pm2 node-gyp
 
-# Tambahkan modul ffmpeg ke PM2 (jika ingin)
-pm2 install ffmpeg
+# Tambahkan modul ffmpeg ke PM2 (opsional)
+# pm2 install ffmpeg
 
 # Tampilkan info sistem
 echo "🖥️ Menampilkan info sistem..."
